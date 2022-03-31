@@ -19,20 +19,20 @@ namespace Employee_Wage
             int WAGE_PERHOUR = 20;
             int DAILY_WAGE;
 
-            if (empinput == EMP_PRESENT)
+            switch (empinput)
             {
-                Console.WriteLine("Employee is Present.");
-                EMP_HOUR = 8;
-            }
-            else if(empinput == EMP_PART_TIME)
-            {
-                Console.WriteLine("Employee is Part-Time Present.");
-                EMP_HOUR = 4;
-            }
-            else
-            {
-                Console.WriteLine("Employee is absent.");
-                EMP_HOUR = 0;
+                case EMP_PRESENT:
+                    Console.WriteLine("Employee is Fulltime Present.");
+                    EMP_HOUR = 8;
+                    break;
+                case EMP_PART_TIME:
+                    Console.WriteLine("Employee is Part-Time present.");
+                    EMP_HOUR = 4;
+                    break;
+                default:
+                    Console.WriteLine("Employee is Absent.");
+                    EMP_HOUR = 0;
+                    break;
             }
 
             DAILY_WAGE = EMP_HOUR * WAGE_PERHOUR;
