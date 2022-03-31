@@ -15,12 +15,15 @@ namespace Employee_Wage
             const int EMP_PRESENT = 1, PART_PRESENT = 2; //EMP_ABSENT = 0;
             int EMP_RATEper_HOUR = 20;
             int NUMBERofWORKING_DAYS = 20;
+            int MAX_WORKING_HOURS = 100;
             int EMP_HOURS = 0;
             int EMP_WAGE = 0;
             int TOTAL_EMP_WAGE = 0;
+            int WORKING_HOURS = 0;
+            int day = 1;
             Random random = new Random();
 
-            for (int day = 0; day <= NUMBERofWORKING_DAYS; day++)
+            while (day<=NUMBERofWORKING_DAYS && EMP_HOURS <= MAX_WORKING_HOURS)
             {
                 int EMP_INPUT = random.Next(0, 3);
 
@@ -45,9 +48,11 @@ namespace Employee_Wage
                 EMP_WAGE = EMP_RATEper_HOUR * EMP_HOURS;
                 Console.WriteLine("Daily Employee Wage for day{0} is Rs. {1}", day, EMP_WAGE);
                 TOTAL_EMP_WAGE += EMP_WAGE;
+                WORKING_HOURS += EMP_HOURS;
+                day++;
 
             }
-            Console.WriteLine("Monthly Employee wage for {0} days is Rs. {1}", NUMBERofWORKING_DAYS, TOTAL_EMP_WAGE);
+            Console.WriteLine("Total Employee wage for {0} days and Working hours {1} is Rs. {2}", day-1, WORKING_HOURS, TOTAL_EMP_WAGE);
             Console.ReadLine();
 
         }
