@@ -12,9 +12,9 @@ namespace Employee_Wage
         {
             Console.WriteLine("Welcome to Employee wage programm.");
 
-            const int EMP_PRESENT = 1; // EMP_ABSENT = 0;
+            const int EMP_PRESENT = 1, EMP_PART_TIME = 2;// EMP_ABSENT = 0;
             Random random = new Random();
-            int empinput = random.Next(0, 2);
+            int empinput = random.Next(0, 3);
             int EMP_HOUR;
             int WAGE_PERHOUR = 20;
             int DAILY_WAGE;
@@ -23,6 +23,11 @@ namespace Employee_Wage
             {
                 Console.WriteLine("Employee is Present.");
                 EMP_HOUR = 8;
+            }
+            else if(empinput == EMP_PART_TIME)
+            {
+                Console.WriteLine("Employee is Part-Time Present.");
+                EMP_HOUR = 4;
             }
             else
             {
