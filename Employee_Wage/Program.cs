@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Employee_Wage
 {
-    internal class Program
+    internal class EMPwageCompute
     {
         static void Main(string[] args)
         {
