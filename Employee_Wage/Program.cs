@@ -8,14 +8,27 @@ namespace Employee_Wage
 {
     internal class EMPwageCompute
     {
+        public string Company;
+        public int NUMBERofWORKING_DAYS, EMP_RATEper_HOUR, MAX_WORKING_HOURS;
+
+        public EMPwageCompute(string Company, int NUMBERofWORKING_DAYS, int EMP_RATEper_HOUR, int MAX_WORKING_HOURS)
+        {
+            this.Company = Company;
+            this.NUMBERofWORKING_DAYS = NUMBERofWORKING_DAYS;   
+            this.EMP_RATEper_HOUR = EMP_RATEper_HOUR;
+            this.MAX_WORKING_HOURS = MAX_WORKING_HOURS;
+        }
         static void Main(string[] args)
         {
-            ComputeWage("Infosys", 22, 20, 50);
-            ComputeWage("BridgeLabz", 20, 30, 60);
-            ComputeWage("Zensar",15,25,100);
+            EMPwageCompute bridgelabz = new EMPwageCompute("BridgeLabz", 20, 30, 60);
+            bridgelabz.ComputeWage();
+            EMPwageCompute infosys = new EMPwageCompute("BridgeLabz", 20, 30, 60);
+            infosys.ComputeWage();
+            EMPwageCompute zensar = new EMPwageCompute("BridgeLabz", 20, 30, 60);
+            zensar.ComputeWage();
             Console.ReadLine();
         }
-            public static void ComputeWage(string Company, int NUMBERofWORKING_DAYS, int EMP_RATEper_HOUR, int MAX_WORKING_HOURS)
+            public void ComputeWage()
             {
                 Console.WriteLine("Welcome to Employee wage programm.");
 
