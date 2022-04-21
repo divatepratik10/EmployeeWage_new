@@ -8,27 +8,25 @@ namespace Employee_Wage
 {
     internal class EMPwageCompute
     {
-        public string Company;
-        public int NUMBERofWORKING_DAYS, EMP_RATEper_HOUR, MAX_WORKING_HOURS;
+        public CompanyWage[] companies = new CompanyWage[5];
+        int NOofCOMPANIES = 0;
 
-        public EMPwageCompute(string Company, int NUMBERofWORKING_DAYS, int EMP_RATEper_HOUR, int MAX_WORKING_HOURS)
+        public void AddComanies(string Company, int NUMBERofWORKING_DAYS, int EMP_RATEper_HOUR, int MAX_WORKING_HOURS)
         {
-            this.Company = Company;
-            this.NUMBERofWORKING_DAYS = NUMBERofWORKING_DAYS;   
-            this.EMP_RATEper_HOUR = EMP_RATEper_HOUR;
-            this.MAX_WORKING_HOURS = MAX_WORKING_HOURS;
+            companies[NOofCOMPANIES] = new CompanyWage(Company,NUMBERofWORKING_DAYS,EMP_RATEper_HOUR,MAX_WORKING_HOURS);
+            NOofCOMPANIES++;    
         }
-        static void Main(string[] args)
+
+        public void ITTERATEoverCOMPANIES()
         {
-            EMPwageCompute bridgelabz = new EMPwageCompute("BridgeLabz", 20, 30, 60);
-            bridgelabz.ComputeWage();
-            EMPwageCompute infosys = new EMPwageCompute("BridgeLabz", 20, 30, 60);
-            infosys.ComputeWage();
-            EMPwageCompute zensar = new EMPwageCompute("BridgeLabz", 20, 30, 60);
-            zensar.ComputeWage();
-            Console.ReadLine();
+            for(int i = 0; i < NOofCOMPANIES; i++)
+            {
+                int TOTAL_WAGE = ComputeWage(companies[i]);
+                companies[i].SetTotalWage(TOTAL_WAGE);
+            }
         }
-            public void ComputeWage()
+        
+            public int ComputeWage(CompanyWage Comp)
             {
                 Console.WriteLine("Welcome to Employee wage programm.");
 
@@ -40,7 +38,7 @@ namespace Employee_Wage
                 int day = 1;
                 Random random = new Random();
 
-                while (day <= NUMBERofWORKING_DAYS && EMP_HOURS <= MAX_WORKING_HOURS)
+                while (day <= Comp.NUMBERofWORKING_DAYS && EMP_HOURS <= Comp.MAX_WORKING_HOURS)
                 {
                     int EMP_INPUT = random.Next(0, 3);
 
@@ -58,19 +56,33 @@ namespace Employee_Wage
                             Console.WriteLine("Employee is Absent.");
                             EMP_HOURS = 0;
                             break;
-
                     }
 
-                    EMP_WAGE = EMP_RATEper_HOUR * EMP_HOURS;
-                    Console.WriteLine("Daily Employee Wage of {2} for day{0} is Rs. {1}", day, EMP_WAGE, Company);
+                    EMP_WAGE = Comp.EMP_RATEper_HOUR * EMP_HOURS;
+                    //Console.WriteLine("Daily Employee Wage of {2} for day{0} is Rs. {1}", day, EMP_WAGE, Comp.Company);
                     TOTAL_EMP_WAGE += EMP_WAGE;
                     WORKING_HOURS += EMP_HOURS;
+                    if(WORKING_HOURS > Comp.NUMBERofWORKING_DAYS)
+                    {
+                        WORKING_HOURS -= EMP_HOURS;
+                        break;
+                    }
                     day++;
 
                 }
-                Console.WriteLine("Total Employee wage of {3} for {0} days and Working hours {1} is Rs. {2}", day - 1, WORKING_HOURS, TOTAL_EMP_WAGE,Company);
-                //Console.ReadLine();
+                Console.WriteLine("Total Employee wage of {3} for {0} days and Working hours {1} is Rs. {2}", day - 1, WORKING_HOURS, TOTAL_EMP_WAGE,Comp.Company);
+            //Console.ReadLine();
+            return TOTAL_EMP_WAGE;
             }
-        
+        static void Main(string[] args)
+        {
+            EMPwageCompute wage = new EMPwageCompute();
+            wage.AddComanies("BridgeLabz", 20, 30, 60);
+            wage.AddComanies("Infosys",30,25,50);
+            wage.AddComanies("Zensar",25,20,100);
+            wage.ITTERATEoverCOMPANIES();
+            Console.ReadLine();
+        }
+
     }
 }
